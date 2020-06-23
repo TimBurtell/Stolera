@@ -6,6 +6,8 @@ from tensorflow import keras
 # Helper libraries
 import numpy as np
 import matplotlib.pyplot as plt
+from stolera_scheduler  import Stolera
+from tensorflow.keras.optimizers.schedules import *
 
 print(tf.__version__)
 
@@ -27,7 +29,14 @@ model = keras.Sequential([
     keras.layers.Dense(10)
 ])
 
-model.compile(optimizer=tf.keras.optimizers.SGD(),
+
+#
+# STOLERA 
+################
+
+lr_schedule = Stolera(.1,.1,.1) 
+
+model.compile(optimizer=tf.keras.optimizers.SGD(learning_rate=lr_schedule),
               loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
               metrics=['accuracy'])
 

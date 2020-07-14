@@ -10,6 +10,7 @@ from tensorflow.keras.optimizers.schedules import LearningRateSchedule
 from tensorflow.python import ops
 from tensorflow.python.ops import math_ops
 from tensorflow.python.util.tf_export import keras_export
+import sys
 
 @keras_export("keras.optimizers.schedules.Stolera")
 class Stolera(LearningRateSchedule):
@@ -36,8 +37,10 @@ class Stolera(LearningRateSchedule):
 
       sigma = math_ops.cast(self.sigma, dtype)
       t_step = math_ops.cast(step, dtype)
-
+      # t_step = math_ops.multiply(t_step, t_step)
+      t_step = math_ops.add(t_step, tf.constant(1, dtype=dtype))
       Z_t = tf.random.normal([1], mean=0.0, stddev=1.0, dtype=dtype)
+
       term_a = math_ops.divide(Z_t[0], t_step)
       term_b = math_ops.multiply(sigma, term_a)
       term_c = math_ops.subtract(initial_learning_rate, term_b, name=name)

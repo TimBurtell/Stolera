@@ -1,0 +1,88 @@
+
+Goal: use a stochastic rate that beats Adam or is just as good. 
+Adam reaches 97% accuracy
+
+
+
+
+--- epochs=10, learning_rate = .001 SGD --- 
+
+sigma = 0
+0.9067000150680542
+
+sigma = .1
+Test accuracy: 0.9063000082969666
+
+sigma = 5
+Test accuracy: 0.8213000297546387
+
+sigma = 1
+Test accuracy: 0.9021000266075134
+
+sigma = 10
+Test accuracy: 0.2612000107765198
+
+--- epochs=50, learning_rate = .001 SGD --- 
+
+sigma = 5
+Test accuracy: 0.895799994468689
+
+
+--- epochs=10, learning_rate = .001 Adam --- 
+
+sigma = 0
+Test accuracy: 0.9769999980926514
+
+sigma = 0.1
+Test accuracy: 0.9717000126838684
+
+sigma = 5
+Test accuracy: 0.9052000045776367
+
+--- epochs=20, learning_rate = .001 Adam --- 
+sigma = 1
+Test accuracy: 0.9323999881744385
+
+--- epochs=20, learning_rate = .001 SGD --- 
+sigma = 1
+Test accuracy: 0.910099983215332
+
+======
+Instead of (s * z/(t+1)) use (s * z/(t * t + 1))
+======
+SGD
+epochs = 20
+
+sigma = 1 
+Test accuracy: 0.9160000085830688
+
+sigma = 5
+test accuracy: 0.8931000232696533
+
+
+--- epochs=20, learning_rate=.1 SGD --- 
+sigma = 5
+Test accuracy: 0.9611999988555908
+
+--- epochs=20, learning_rate=1 SGD --- 
+sigma = 5
+Test accuracy: 0.9585000276565552
+
+--- epochs=40, learning_rate=1 SGD --- 
+sigma = 5
+Test accuracy: 0.9514999985694885
+
+
+======
+Switch back to (s * z/(t+1))
+======
+
+--- epochs=20, learning_rate=1 SGD --- 
+
+seed = 0.1
+sigma = 5
+Test accuracy: 0.9363999962806702
+seed = 2.0
+Test accuracy: 0.9455999732017517
+
+

@@ -7,6 +7,7 @@ from tensorflow import keras
 import numpy as np
 import matplotlib.pyplot as plt
 from stolera_scheduler  import Stolera
+from dilera_scheduler import Dilera
 from tensorflow.keras.optimizers.schedules import *
 
 print(tf.__version__)
@@ -32,7 +33,7 @@ model = keras.Sequential([
 learning_rate = 1
 sigma = 5
 seed = 2.0
-lr_schedule = Stolera(learning_rate, sigma, seed)
+lr_schedule = Dilera(learning_rate, sigma, seed)
 
 model.compile(optimizer=tf.keras.optimizers.SGD(learning_rate=lr_schedule),
               loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),

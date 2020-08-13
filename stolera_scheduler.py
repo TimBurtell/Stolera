@@ -30,10 +30,10 @@ class Stolera(LearningRateSchedule):
     tf.random.set_seed(seed)
 
   def __call__(self, step):
-    with ops.name_scope_v2(self.name or "Stolera") as name:
+    with tf.name_scope(self.name or "Stolera") as name:
       dtype = tf.dtypes.float32
 
-      initial_learning_rate = ops.convert_to_tensor_v2(self.initial_learning_rate, dtype=dtype, name="initial_learning_rate")
+      initial_learning_rate = tf.convert_to_tensor(self.initial_learning_rate, dtype=dtype, name="initial_learning_rate")
 
       sigma = math_ops.cast(self.sigma, dtype)
       t_step = math_ops.cast(step, dtype)
